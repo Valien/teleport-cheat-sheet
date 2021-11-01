@@ -85,3 +85,9 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 | `tctl auth sign --user=<USER> --out=<NAME> --format=openssh --ttl=<TIME>` | Will export out identity files. Depending on `--format` specified (`file`, `openssh`, `tls`, `kubernetes`, `db`, `mongodb`)
 | `tctl rm nodes/<uuid>` | Remove node from Teleport list
 | `tctl status` | Shows cluster status, version information, FQDN, etc
+
+### Other Commands
+
+| Command | Description |
+| --- | --- |
+| `(for i in auth node proxy; do tctl get $i; done ) \| egrep -i 'hostname: \| version' \| grep -vi 'v2'` | Gets all cluster component versions
