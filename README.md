@@ -1,5 +1,5 @@
-# teleport-cheat-sheet
- Information and shortcuts for Teleport's tsh and tctl binaries.
+# Teleport Command Cheat Sheet
+ Information and shortcuts for Teleport's `tsh` and `tctl` binaries.
 
 If you want to contribute please feel free to fork and submit a PR!
 
@@ -12,10 +12,15 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 - `tsh` - This is the main Teleport client binary
 - `tctl` - This is the main Teleport admin client binary
 
-## TSH Cheat Sheet
+## `tsh` Cheat Sheet
 
 - [Official documenation for TSH](https://goteleport.com/docs/server-access/guides/tsh/)
 - [CLI reference](https://goteleport.com/docs/setup/reference/cli/)
+
+
+## Key directories
+
+- Short-lived certificates, etc are normally stored on in your `$HOME/.tsh` directory.
 
 ### Common Commands
 
@@ -25,33 +30,38 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 | `tsh ls` | List remote SSH nodes/resources
 | `tsh ls --format=names` | List SSH node names only. Can also use `--format=json` and `--format=text`
 | `tsh ls -f names` | Same as above.
-| `tsh status` | List current status of CLI user.
 | `tsh login --user=USER --auth=OIDC --proxy=FQDN:443` | Attempts to authenticate a user with selected OIDC/SAML connector via the default browser. The `--auth=` option can be changed to `github`, `okta`, etc.
 | `tsh login --user=USER --auth=OIDC --proxy=FQDN:443 --browser=none` | Posts the loopback URL for copy and paste in your browser (does not auto-launch your browser to login)
 | `tsh logout` | Logout of Teleport (including K8s and DB)
 | `tsh request ls` | List current Access Requests
 | `tsh request show <request-id>` | Show details of request
+| `tsh status` | List current status of CLI user.
 
-### tsh ssh commands
+### `tsh` SSH Commands
 
 | Command | Description |
 | --- | ---
-| `tsh ssh <user>@<host>` | SSH into managed node
-| `tsh ssh <user>@<host> <command>` | Execute remote command on host. Example: `tsh ssh <user>@<host> teleport version` returns Teleport version
 | `tsh join -l <user> <session-id>` | Joins existing Teleport SSH session with specified user and session-id
+| `tsh ssh <user>@<host>` | SSH into managed node
+| `tsh ssh <user>@key=value` | SSH into managed node using labels
+| `tsh ssh <user>@<host> <command>` | Execute remote command on host. Example: `tsh ssh <user>@<host> teleport version` returns Teleport version
 
 
-### tsh kubernetes commands
+### `tsh` Kubernetes Commands
 
 | Command | Description |
 | --- | ---
+| `tsh kube --help` | Show additional context help for K8s access
 | `tsh kube ls` | List all Kubernetes clusters
 | `tsh kube login <k8s cluster name>` | Login to specific K8s cluster
 
-### tsh database commands
+### `tsh` Database Commands
 
 | Command | Description |
 | --- | ---
+| `tsh db --help` | Show additional context help for DB access
+| `tsh db config` | Lists your current DB configuration information
+| `tsh db env` | List your current logged in DB environment settings
 | `tsh db ls` | List all connected databases
 | `tsh db login <db name>` | Login to specific database
 
@@ -62,7 +72,7 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 | `tsh ls -f json \| jq -r '.[] \| [.spec.hostname,.metadata.name] \| @tsv'` | Parse node name and uuid using `jq`
 | `tsh ls -v \| awk '{print $1, $2}' \| column -t` | Parse Server name and UUID using `awk`
 
-## TCTL Cheat Sheet
+## `tctl` Cheat Sheet
 
 - [Official documenation for TCTL](https://goteleport.com/docs/server-access/guides/tctl/)
 - [CLI reference](https://goteleport.com/docs/setup/reference/cli/)
@@ -72,6 +82,6 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 | Command | Description |
 | --- | ---
 |`tctl --help`, `tctl help` | Shows context help information. Running  a sub-command of `tsh rm help` will also work but `tsh not --help` will not.
-| `tctl status` | Shows cluster status, version information, FQDN, etc
 | `tctl auth sign --user=<USER> --out=<NAME> --format=openssh --ttl=<TIME>` | Will export out identity files. Depending on `--format` specified (`file`, `openssh`, `tls`, `kubernetes`, `db`, `mongodb`)
 | `tctl rm nodes/<uuid>` | Remove node from Teleport list
+| `tctl status` | Shows cluster status, version information, FQDN, etc
