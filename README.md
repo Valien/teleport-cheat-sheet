@@ -84,7 +84,7 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 |`tctl --help`, `tctl help` | Shows context help information. Running  a sub-command of `tsh rm help` will also work but `tsh not --help` will not.
 | `tctl auth sign --user=<USER> --out=<NAME> --format=openssh --ttl=<TIME>` | Will export out identity files. Depending on `--format` specified (`file`, `openssh`, `tls`, `kubernetes`, `db`, `mongodb`)
 | `tctl get locks --format text` | Shows all locks on the cluster formatted in a table (vs default `.json` output)
-| `tctl nodes add --roles=kube --ttl=10000h --format=json | jq -r '.[0]'` | Creates a `node` join token and outputs the token (requires `jq`)
+| `tctl nodes add --roles=kube --ttl=10000h --format=json \| jq -r '.[0]'` | Creates a `node` join token and outputs the token (requires `jq`)
 | `tctl rm nodes/<uuid>` | Remove node from Teleport list
 | `tctl status` | Shows cluster status, version information, FQDN, etc
 
