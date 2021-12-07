@@ -1,4 +1,4 @@
-# Teleport Command Cheat Sheet
+# Teleport Commands Cheat Sheet
  Information and shortcuts for Teleport's `tsh` and `tctl` binaries.
 
 If you want to contribute please feel free to fork and submit a PR!
