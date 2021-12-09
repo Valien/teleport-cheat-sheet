@@ -87,6 +87,7 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 | `tctl nodes add --roles=kube --ttl=10000h --format=json \| jq -r '.[0]'` | Creates a `node` join token and outputs the token (requires `jq`)
 | `tctl rm nodes/<uuid>` | Remove node from Teleport list
 | `tctl status` | Shows cluster status, version information, FQDN, etc
+| `tctl top` | Shows a CLI graphical interface to view Teleport cluster statistics and more
 
 ### Other Commands
 
