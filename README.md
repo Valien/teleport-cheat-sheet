@@ -27,7 +27,7 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 | Command | Description |
 | --- | ---
 | `tsh app ls` | List your applications from the CLI
-| `tsh app login --aws-role=av-<ROLE> <AWS_APP>` | Let's you use AWS CLI commands via Teleport
+| `tsh app login --aws-role=av-<ROLE> <AWS_APP>` | Lets you use AWS CLI commands via Teleport
 |`tsh --help`, `tsh help`, `tsh <command> -h` | Shows context help information. Running  a sub-command of `tsh ls help` will not work but `tsh ls --help` will.
 | `tsh ls` | List remote SSH nodes/resources
 | `tsh ls --format=names` | List SSH node names only. Can also use `--format=json` and `--format=text`
