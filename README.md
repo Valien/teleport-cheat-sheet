@@ -66,6 +66,7 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 | `tsh db env` | List your current logged in DB environment settings
 | `tsh db ls` | List all connected databases
 | `tsh db login <db name>` | Login to specific database
+| `tsh db login --db-user=<db user> <db name>` | Login with specific user to a DB (example: MongoDB)
 
 ### Other Shortcuts
 
@@ -98,3 +99,15 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 | Command | Description |
 | --- | --- |
 | `(for i in auth node proxy; do tctl get $i; done ) \| egrep -i 'hostname: \| version' \| grep -vi 'v2'` | Gets all cluster component versions
+| `teleport version \| cut -f 2 -d " "` | Easy way to parse specific `teleport version` information
+
+
+### Dynamic Labels Examples
+
+You can use the Teleport dynamic labels to run commands on your nodes to get dynamic information. Examples:
+
+     - name: teleport_version
+       command: ["/bin/sh", "-c", "teleport version | cut -d ' ' -f 2"]
+       period: 1h
+
+This will report the current version of Teleport as a node label.
