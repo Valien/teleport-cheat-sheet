@@ -91,6 +91,7 @@ Teleport has 2 client binaries that are useful for users and admins to manage Te
 | `tctl get rc` | Gets the remote cluster (rc) information ~ `leaf` clusters
 | `tctl get user/<USERNAME>` | Gets user information
 | `tctl nodes add --roles=kube --ttl=10000h --format=json \| jq -r '.[0]'` | Creates a `node` join token and outputs the token (requires `jq`)
+| `tctl nodes ls --format=json \| jq '.[].spec.version' \| sort \| uniq` | Easier way to get cluster version (all nodes)
 | `tctl rm nodes/<uuid>` | Remove node from Teleport list
 | `tctl rm rc/<cluster_name>` | Removes trusted cluster/remote cluster from `root` cluster
 | `tctl status` | Shows cluster status, version information, FQDN, etc
